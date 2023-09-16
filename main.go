@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-
-	"github.com/sirupsen/logrus/hooks/writer"
 )
 
 type Rsvp struct {
@@ -44,7 +42,11 @@ func main() {
 	loadTemplates()
 
 	// http.HandlerFunc("/", welcomeHandler)
-	// http.HandleFunc("/list", listHandler)
-	
+	http.HandleFunc("/list", listHandler)
+
+	err := http.ListenAndServe(":5000", nil)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
