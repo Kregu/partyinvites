@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
-import "html/template"
+import (
+	"fmt"
+	"html/template"
+	"net/http"
+)
 
 type Rsvp struct {
 	Name, Email, Phone string
@@ -24,6 +27,10 @@ func loadTemplates() {
 		}
 	}
 
+}
+
+func welcomeHandler(writer http.ResponseWriter, request *http.Request) {
+	templates["welcome"].Execute(writer, nil)
 }
 
 func main() {
